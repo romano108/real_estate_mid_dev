@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const User = require('./Schemas/User.js');
 const HouseImage = require('./Schemas/House.js');
 const RegisteredUsers = require('./Schemas/RegisteredUsers');
+const Comment = require('./Schemas/PostComment.js');
 
 const app = express();
 const mongoURI = 'mongodb://localhost:27017/real-estate';
@@ -19,9 +20,9 @@ app.post('/log-in', async (req, res) => {
 
   try {
     const newUser = new User({
-      name: name,
-      email: email,
-      password: password,
+      name,
+      email,
+      password,
     });
 
     await newUser.save();
@@ -32,6 +33,25 @@ app.post('/log-in', async (req, res) => {
     res
       .status(500)
       .json({ message: 'Error creating user', error: error.message });
+  }
+});
+
+app.post('/comment', async (req, res) => {
+  const { comment } = req.body;
+
+  try {
+    const newComment = new Comment({
+      comment,
+    });
+
+    await newComment.save();
+    res
+      .status(201)
+      .json({ message: 'Comment created successfully', user: newComment });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'Error creating comment', error: error.message });
   }
 });
 
