@@ -4,6 +4,7 @@ const User = require('./Schemas/User.js');
 const HouseImage = require('./Schemas/House.js');
 const RegisteredUsers = require('./Schemas/RegisteredUsers');
 const Comment = require('./Schemas/PostComment.js');
+const UserComments = require('./Schemas/GetComment.js');
 
 const app = express();
 const mongoURI = 'mongodb://localhost:27017/real-estate';
@@ -59,6 +60,17 @@ app.get('/users', async (req, res) => {
   try {
     const UsersRegistered = await RegisteredUsers.find();
     res.status(200).json(UsersRegistered);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'Error retrieving house images', error: error.message });
+  }
+});
+
+app.get('/user-comments', async (req, res) => {
+  try {
+    const AllComments = await UserComments.find();
+    res.status(200).json(AllComments);
   } catch (error) {
     res
       .status(500)
