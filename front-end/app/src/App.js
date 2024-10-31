@@ -1,8 +1,12 @@
 import './App.css';
+import Navbar from './components/Navbar';
+import LandingPage from './components/LandingPageImg';
 
 function App() {
   return (
-    <div className="App bg-red-200">
+    <div>
+      <Navbar />
+      <LandingPage />
       <p>Hello World</p>
     </div>
   );

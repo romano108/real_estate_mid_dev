@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const User = require('./Schemas/User.js');
 const HouseImage = require('./Schemas/House.js');
-const RegisteredUsers = require('./Schemas/RegisteredUsers');
+const RegisteredUsers = require('./Schemas/RegisteredUsers.js');
 const Comment = require('./Schemas/PostComment.js');
 const UserComments = require('./Schemas/GetComment.js');
 
